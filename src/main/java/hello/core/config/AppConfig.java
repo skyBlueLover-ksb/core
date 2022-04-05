@@ -12,12 +12,8 @@ public class AppConfig {
     private MemberRepository memberRepository;
 
     public MemberRepository getMemberRepository() {
-        try{
-            MemberRepository test = memberRepository;
-        }
-        catch (NullPointerException e) {
+        if (memberRepository == null)
             memberRepository = new MemoryMemberRepository();
-        }
 
         return memberRepository;
 

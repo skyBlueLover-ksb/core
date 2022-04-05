@@ -1,5 +1,6 @@
 package hello.core;
 
+import hello.core.config.AppConfig;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
@@ -14,9 +15,10 @@ import hello.core.service.OrderServiceImpl;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberRepository memberRepository = new MemoryMemberRepository();
-        MemberService memberService = new MemberServiceImpl(memberRepository);
-        OrderService orderService = new OrderServiceImpl(memberRepository, new FixDiscountPolicy());
+
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
