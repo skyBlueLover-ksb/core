@@ -13,12 +13,14 @@ public class AppConfig {
 
     public MemberRepository getMemberRepository() {
         try{
-            return memberRepository;
+            MemberRepository test = memberRepository;
         }
         catch (NullPointerException e) {
             memberRepository = new MemoryMemberRepository();
-            return memberRepository;
         }
+
+        return memberRepository;
+
     }
 
     public MemberService memberService() {
