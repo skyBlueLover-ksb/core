@@ -9,13 +9,17 @@ import hello.core.service.MemberService;
 import hello.core.service.MemberServiceImpl;
 import hello.core.service.OrderService;
 import hello.core.service.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AppConfig {
     private MemberRepository memberRepository;
     private MemberService memberService;
     private OrderService orderService;
     private DiscountPolicy discountPolicy;
 
+    @Bean
     public MemberRepository memberRepository() {
         if (memberRepository == null)
             memberRepository = new MemoryMemberRepository();
@@ -23,6 +27,7 @@ public class AppConfig {
         return memberRepository;
     }
 
+    @Bean
     public MemberService memberService() {
         if (memberService == null)
             memberService = new MemberServiceImpl(memberRepository());
@@ -30,6 +35,7 @@ public class AppConfig {
         return memberService;
     }
 
+    @Bean
     public OrderService orderService() {
         if (orderService == null)
             orderService = new OrderServiceImpl(memberRepository(), discountPolicy());
@@ -37,7 +43,8 @@ public class AppConfig {
         return orderService;
     }
 
-    private DiscountPolicy discountPolicy() {
+    @Bean
+    public DiscountPolicy discountPolicy() {
         if (discountPolicy == null)
             //discountPolicy = new FixDiscountPolicy();
             discountPolicy = new RateDiscountPolicy();
