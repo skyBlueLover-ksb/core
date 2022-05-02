@@ -32,7 +32,7 @@ public class ApplicationContextInfoTest {
             BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName);
 
             // ROLE_APPLICATION: 직접 등록한 application bean
-            // ROLE_INFRASTRUCTURE: spring이 내부에서 사용하는 bean
+            // ROLE_INFRASTRUCTURE: spring 내부에서 사용하는 bean
             if (beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
                 Object bean = ac.getBean(beanDefinitionName);
                 System.out.println("beanDefinitionName = " + beanDefinitionName +
