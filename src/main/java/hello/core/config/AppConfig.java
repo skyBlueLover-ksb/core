@@ -14,42 +14,25 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
-    private MemberRepository memberRepository;
-    private MemberService memberService;
-    private OrderService orderService;
-    private DiscountPolicy discountPolicy;
 
     @Bean
     public MemberRepository memberRepository() {
-        if (memberRepository == null)
-            memberRepository = new MemoryMemberRepository();
-
-        return memberRepository;
+        return new MemoryMemberRepository();
     }
 
     @Bean
     public MemberService memberService() {
-        if (memberService == null)
-            memberService = new MemberServiceImpl(memberRepository());
-
-        return memberService;
+        return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public OrderService orderService() {
-        if (orderService == null)
-            orderService = new OrderServiceImpl(memberRepository(), discountPolicy());
-
-        return orderService;
+         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
     public DiscountPolicy discountPolicy() {
-        if (discountPolicy == null)
-            //discountPolicy = new FixDiscountPolicy();
-            discountPolicy = new RateDiscountPolicy();
-
-        return discountPolicy;
+        return new RateDiscountPolicy();
     }
 
 }
