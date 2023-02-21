@@ -3,5 +3,6 @@
 
 - Java
 - Spring Boot
-- Junit5
+- JUnit5
+- Intellij
 - Git
