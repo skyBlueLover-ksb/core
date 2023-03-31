@@ -27,7 +27,7 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     }
 
     public void disconnect() {
-        System.out.println("close" + url);
+        System.out.println("close: " + url);
 
     }
 
